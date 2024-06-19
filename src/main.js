@@ -37,3 +37,27 @@ const questions = [
         correct: "Hanukkah"
     }
 ];
+
+let currentQuestionIndex = 0;
+
+const questionTitle = document.querySelector('.question__title p');
+const questionText = document.querySelector('.question__text p');
+const answerList = document.querySelector('.answer-list');
+const answerButton = document.querySelector('.answer-button');
+
+
+function showQuestion() {
+    const question = questions[currentQuestionIndex];
+    questionTitle.textContent = `Question: ${currentQuestionIndex + 1}`;
+    questionText.textContent = question.question;
+
+}
+answerButton.addEventListener('click', () => {
+    currentQuestionIndex++;
+    showQuestion();
+
+});
+
+showQuestion();
+
+
