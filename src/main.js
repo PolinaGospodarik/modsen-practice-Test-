@@ -4,22 +4,22 @@ const questions = [
     {
         question: "How many planets are in the solar system?",
         answers: [8, 9, 10],
-        correct: 8
+        correct: ["8"]
     },
     {
         question: "What is the freezing point of water?",
         answers: [0, -5, -6],
-        correct: 0
+        correct: ["0"]
     },
     {
         question: "What is the longest river in the world?",
         answers: ["Nile", "Amazon", "Yangtze"],
-        correct: "Nile"
+        correct: ["Nile"]
     },
     {
         question: "How many chromosomes are in the human genome?",
         answers: [42, 44, 46],
-        correct: 46
+        correct: ["46"]
     },
     {
         question: "Which of these characters are friends with Harry Potter?",
@@ -29,12 +29,12 @@ const questions = [
     {
         question: "What is the capital of Canada?",
         answers: ["Toronto", "Ottawa", "Vancouver"],
-        correct: "Ottawa"
+        correct: ["Ottawa"]
     },
     {
         question: "What is the Jewish New Year called?",
         answers: ["Hanukkah", "Yom Kippur", "Kwanzaa"],
-        correct: "Hanukkah"
+        correct: ["Hanukkah"]
     }
 ];
 
@@ -51,14 +51,13 @@ function showQuestion() {
     questionTitle.textContent = `Question: ${currentQuestionIndex + 1}`;
     questionText.textContent = question.question;
     answerList.innerHTML = '';
+    const messageContainer = document.querySelector('.question__message');
     question.answers.forEach(function (item) {
         const li = document.createElement('li');
         const button = document.createElement('button');
         button.classList.add('answer');
 
-        if (typeof item === 'number' || typeof item === 'string') {
-            button.textContent = String(item);
-        }
+        button.textContent = String(item);
 
         button.addEventListener('click', () => {
             checkAnswerClick(button, question.correct);
@@ -66,31 +65,70 @@ function showQuestion() {
 
         li.append(button);
         answerList.append(li);
+
+        if (question.correct.length > 1) {
+            messageContainer.classList.remove('hidden');
+        }else{
+            messageContainer.classList.add('hidden');
+        }
+
     });
 }
 answerButton.addEventListener('click', () => {
     currentQuestionIndex++;
+    answerButton.disabled = true;
     showQuestion();
 
 });
 
 function checkAnswerClick(button, correctAnswer) {
     const buttons = document.querySelectorAll('.answer');
+
+    if (button.classList.contains('active')) {
+        button.classList.remove('active');
+    } else {
+        button.classList.add('active');
+    }
+
+    const selectedAnswers = [];
     buttons.forEach(item => {
-        item.disabled = true;
-        if (item.textContent === correctAnswer.toString()) {
-            item.classList.add('correct-answer');
+        if (item.classList.contains('active')) {
+            selectedAnswers.push(item.textContent);
         }
     });
 
-    if (button.textContent === correctAnswer.toString()) {
+    if (selectedAnswers.length >= correctAnswer.length) {
+        buttons.forEach(item => {
+            if (!item.classList.contains('active')) {
+                item.disabled = true;
+            }
+            answerButton.disabled = false;
+        });
+
+
     } else {
-        button.classList.add('wrong-answer');
+        buttons.forEach(item => {
+            item.disabled = false;
+            answerButton.disabled = true;
+        });
+
     }
 
-    answerButton.disabled = false;
+    buttons.forEach(item => {
+        item.classList.remove('correct-answer', 'wrong-answer');
+        if (correctAnswer.includes(item.textContent)) {
+            if (item.classList.contains('active')) {
+                item.classList.add('correct-answer');
+            }
+        } else if (item.classList.contains('active')) {
+            item.classList.add('wrong-answer');
+        }
+    });
+
 }
 
 showQuestion();
+
+
 
 
