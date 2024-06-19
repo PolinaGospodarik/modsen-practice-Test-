@@ -35,6 +35,19 @@
 .answer-list{
 
 }
+
+/* Пример стилей для правильного и неправильного ответа */
+.correct-answer {
+    background-color: green;
+    color: white;
+}
+
+.wrong-answer {
+    background-color: red;
+    color: white;
+}
+
+
 .answer-button{
 
 }
@@ -53,3 +66,4 @@
 .restart-btn{
 
 }
+

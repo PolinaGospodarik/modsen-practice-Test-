@@ -50,13 +50,46 @@ function showQuestion() {
     const question = questions[currentQuestionIndex];
     questionTitle.textContent = `Question: ${currentQuestionIndex + 1}`;
     questionText.textContent = question.question;
+    answerList.innerHTML = '';
+    question.answers.forEach(function (item) {
+        const li = document.createElement('li');
+        const button = document.createElement('button');
+        button.classList.add('answer');
 
+        if (typeof item === 'number' || typeof item === 'string') {
+            button.textContent = String(item);
+        }
+
+        button.addEventListener('click', () => {
+            checkAnswerClick(button, question.correct);
+        });
+
+        li.append(button);
+        answerList.append(li);
+    });
 }
 answerButton.addEventListener('click', () => {
     currentQuestionIndex++;
     showQuestion();
 
 });
+
+function checkAnswerClick(button, correctAnswer) {
+    const buttons = document.querySelectorAll('.answer');
+    buttons.forEach(item => {
+        item.disabled = true;
+        if (item.textContent === correctAnswer.toString()) {
+            item.classList.add('correct-answer');
+        }
+    });
+
+    if (button.textContent === correctAnswer.toString()) {
+    } else {
+        button.classList.add('wrong-answer');
+    }
+
+    answerButton.disabled = false;
+}
 
 showQuestion();
 
