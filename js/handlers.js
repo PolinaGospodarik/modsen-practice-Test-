@@ -1,7 +1,7 @@
 "use strict";
 
 import { questions } from "./config.js";
-import { getScore, getCurrentQuestionIndex, incrementScore } from './main.js';
+import { getCurrentQuestionIndex, incrementScore } from './main.js';
 
 const answerButton = document.querySelector('.answer-button');
 const nextButton = document.querySelector('.next-button');

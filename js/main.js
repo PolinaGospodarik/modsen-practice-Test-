@@ -31,10 +31,6 @@ export function incrementScore() {
     score++;
 }
 
-export function getScore() {
-    return score;
-}
-
 export function showQuestion() {
     const question = questions[currentQuestionIndex];
     questionTitle.textContent = `Question: ${currentQuestionIndex + 1}/${questions.length}`;
@@ -57,8 +53,12 @@ export function showQuestion() {
         answerList.append(li);
 
         if (question.correct.length > 1) {
-            messageContainer.classList.remove('hidden');
-        } else {
+            if (messageContainer.classList.contains('hidden')) {
+                messageContainer.classList.remove('hidden');
+                messageContainer.classList.add('visible');
+            }
+        }else{
+            messageContainer.classList.remove('visible');
             messageContainer.classList.add('hidden');
         }
     });
