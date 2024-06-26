@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <div class="quiz">
@@ -15,18 +15,18 @@
             <div class="question__text">
                 <p>Question text</p>
             </div>
-            <span class="question__message hidden">You can select several answer options.</span>
+            <span class=" hidden question__message ">You can select several answer options.</span>
             <ul class="answer-list">
                 <!--Список ответов -->
             </ul>
-            <button class="answer-button" disabled>Next</button>
+            <button class="answer-button">Answer</button>
             <div class="score-wrap">
-                <p>Your score: 0</p>
                 <button class="restart-button">Restart</button>
+                <button class="next-button" disabled>Next</button>
             </div>
         </div>
     </div>
 </div>
-<script src="main.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
