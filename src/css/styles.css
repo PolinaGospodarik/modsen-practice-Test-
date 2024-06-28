@@ -1,6 +1,6 @@
 @import url('fonts.css');
 
-/* Общие стили для всех элементов */
+
 * {
     padding: 0;
     margin: 0;
@@ -83,7 +83,6 @@ body {
     font-size: 30px;
 }
 
-/* Стили для списка ответов */
 .answer-list {
     display: flex;
     flex-direction: column;
@@ -146,7 +145,6 @@ body {
     color: var(--active-font-color);
 }
 
-/* Стили для кнопок */
 .answer-button {
     display: block;
     padding: 10px 25px;
@@ -191,7 +189,7 @@ body {
     cursor: not-allowed;
 }
 
-/* Стили для обёртки с очками */
+
 .score-wrap {
     width: 100%;
     display: flex;
