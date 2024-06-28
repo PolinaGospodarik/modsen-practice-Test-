@@ -39,7 +39,7 @@ body {
 
 /* Основные стили для викторины */
 .quiz {
-    background: linear-gradient(45deg, rgb(110, 124, 227) 14%, rgb(177, 241, 251) 97%);
+    /*background: linear-gradient(45deg, rgb(110, 124, 227) 14%, rgb(177, 241, 251) 97%);*/
     padding: 15px 0;
     min-height: 100vh;
 
