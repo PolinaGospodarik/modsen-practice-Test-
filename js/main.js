@@ -52,15 +52,10 @@ export function showQuestion() {
         li.append(button);
         answerList.append(li);
 
-        if (question.correct.length > 1) {
-            if (messageContainer.classList.contains('hidden')) {
-                messageContainer.classList.remove('hidden');
-                messageContainer.classList.add('visible');
-            }
-        }else{
-            messageContainer.classList.remove('visible');
-            messageContainer.classList.add('hidden');
-        }
+        const isMultipleCorrect = question.correct.length > 1;
+        messageContainer.classList.toggle('hidden', !isMultipleCorrect);
+        messageContainer.classList.toggle('visible', isMultipleCorrect);
+
     });
 }
 

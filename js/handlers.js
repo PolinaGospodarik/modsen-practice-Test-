@@ -54,21 +54,21 @@ export function handleAnswerClick(button, correctAnswer) {
         }
     });
 
-    if (button.classList.contains('active')) {
+    const isActive = button.classList.contains('active');
+    const isSingleAnswer = correctAnswer.length === 1;
+
+    if (isActive) {
         button.classList.remove('active');
+    } else if (isSingleAnswer) {
+        buttons.forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
     } else {
-        if (correctAnswer.length === 1) {
-            buttons.forEach(item => item.classList.remove('active'));
-            button.classList.add('active');
-        } else {
-            if (selectedAnswers.length < correctAnswer.length) {
-                button.classList.add('active');
-            } else {
-                button.classList.add('active');
-                selectedAnswers[0].classList.remove('active');
-            }
+        if (selectedAnswers.length >= correctAnswer.length) {
+            selectedAnswers[0].classList.remove('active');
         }
+        button.classList.add('active');
     }
+
 
     selectedAnswers.length = 0;
     buttons.forEach(item => {
