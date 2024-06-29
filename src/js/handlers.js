@@ -63,12 +63,8 @@ export function handleAnswerClick(button, correctAnswer) {
         buttons.forEach(item => item.classList.remove('active'));
         button.classList.add('active');
     } else {
-        if (selectedAnswers.length >= correctAnswer.length) {
-            selectedAnswers[0].classList.remove('active');
-        }
         button.classList.add('active');
     }
-
 
     selectedAnswers.length = 0;
     buttons.forEach(item => {
